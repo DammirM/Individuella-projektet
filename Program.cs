@@ -109,13 +109,16 @@ namespace Individuella_projektet
                                 Count = Whitdraw2(Users, Damir, userAcc, ref Pin);
                                 break;
                             case 4:
-                                UsersUse = LogOut();
+                               UsersUse = LogOut();
                                 break;
                             default:
                                 Console.WriteLine("ogiltigt val! Välj mellan 1-4");
                                 break;
                         }
-                    } while (UsersUse == false);
+                    } while (UsersUse == false); 
+                    UsersUse = false; /*Setting bool back to false becasue the next user will
+                    get kicked out of the loop if it remains true*/
+
 
                 }
                 
@@ -145,14 +148,15 @@ namespace Individuella_projektet
                             Count = Whitdraw2(Users, Banan, userAcc, ref Pin);
                             break;
                         case 4:
-                                UsersUse = LogOut();
+                               UsersUse = LogOut();
                                 break;
                         default:
                             Console.WriteLine("ogiltigt val! Välj mellan 1-4");
                             break;
                     }
                 } while (UsersUse == false);
-            }
+                    UsersUse = false;
+                }
 
             if (login == Users[2, 0])
             {
@@ -187,6 +191,7 @@ namespace Individuella_projektet
                             break;
                         }
                 } while (UsersUse == false);
+                    UsersUse = false;
 
             }
 
@@ -215,6 +220,7 @@ namespace Individuella_projektet
                             Count = Whitdraw2(Users, Päron, userAcc, ref Pin);
                             break;
                         case 4:
+
                                 UsersUse = LogOut();
                                 break;
                         default:
@@ -222,13 +228,15 @@ namespace Individuella_projektet
                             break;
                     }
                 } while (UsersUse == false);
+                    UsersUse = false;
 
             }
-            // Apelsin 1 account
-
-            if (login == Users[4, 0])
+                // Apelsin 1 account
+                
+                if (login == Users[4, 0])
             {
-                Console.WriteLine("välkommen " + login + " Välj mellan följande alternativ:");
+                    
+                    Console.WriteLine("välkommen " + login + " Välj mellan följande alternativ:");
                 do
                 {
                         Console.WriteLine("1. Se dina konton och saldo");
@@ -272,43 +280,20 @@ namespace Individuella_projektet
                                 Enter();
                             break;
                             case 4:
-
                                 UsersUse = LogOut();
                                 break;
                             default:
                             Console.WriteLine("ogiltigt val! Välj mellan 1-4");
                             break;
-                        }
+                            }
                 } while (UsersUse == false);
+                    UsersUse = false;
+                    
             }
             } while (ShutDown == true);
 
         }
 
-        private static int Menu()
-        {
-            int uChoice = 0;
-            int hoj = 0;
-            do
-            {  // Switch menu
-                Console.WriteLine("1. Se dina konton och saldo");
-                Console.WriteLine("2. Överföring mellan konton");
-                Console.WriteLine("3. Ta ut Pengar");
-                Console.WriteLine("4. Logga ut");
-
-                // To get the correct datatype
-                try
-                {
-                    uChoice = int.Parse(Console.ReadLine());
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.Message);
-                }
-
-            } while (uChoice == 1 || uChoice == 2 || uChoice == 3 || uChoice == 4);
-            return uChoice;
-        }
 
         private static bool LogOut()
         {
@@ -318,7 +303,7 @@ namespace Individuella_projektet
             Thread.Sleep(700);
             Console.Clear();
             UsersUse = true;
-            return UsersUse;
+            return UsersUse = true;
         }
 
         private static int Whitdraw2(string[,] Users, decimal[] Accounts, int userAcc, ref string Pin)
@@ -350,11 +335,11 @@ namespace Individuella_projektet
                     }
                     // If wrong Pin back to main menu
                     else Console.WriteLine("Fel Pin du skickas tillbaka till menyn ");
-                    Enter();
+                    Thread.Sleep(500);
                 }
                 // If wrong amount registered back to menu
                 else Console.WriteLine("Summan stämmer inte överens med kontots saldo du skickas tillbaka till menyn ");
-                Enter();
+                Thread.Sleep(500);
             }
             else if (Count == 2)
             {
@@ -372,16 +357,16 @@ namespace Individuella_projektet
                         Console.WriteLine("Summan kvar på kontot är " + Accounts[1]);
                         Enter();
                     }
-                    else Console.WriteLine("Fel Pin:"); 
-                    Enter();
+                    else Console.WriteLine("Fel Pin:");
+                    Thread.Sleep(500);
                 }
                 else Console.WriteLine("Summan stämmer inte överens med kontots saldo:");
-                Enter();
+                Thread.Sleep(500);
             }
             else if (Count >= 3)
             {
                 Console.WriteLine("Siffran stämmer inte överens med dina konton");
-                Enter();
+                Thread.Sleep(500);
             }
 
             return Count;
@@ -503,13 +488,13 @@ namespace Individuella_projektet
                 if (enter == "")
                 {
                     Console.Clear();
-                    break;
+                    press = true;
                 }
                 else
                 {
                     Console.Write("");
                 }
-            } while (true);
+            } while (false);
         }
     }
 
