@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Individuella projektet": {
+      "commandName": "Project",
+      "nativeDebugging": true
+    }
+  }
+}

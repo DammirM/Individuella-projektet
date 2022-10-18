@@ -92,23 +92,22 @@ namespace Individuella_projektet
                         Console.WriteLine("2. Överföring mellan konton");
                         Console.WriteLine("3. Ta ut Pengar");
                         Console.WriteLine("4. Logga ut");
-                        int uChoice = int.Parse(Console.ReadLine());
+                        string uChoice = Console.ReadLine();
                         Console.Clear();
 
                         switch (uChoice)
                         {
 
-                            case 1:
-                                ShowAccount(login, Users, Damir, Banan, Äpple, Päron, Apelsin);
+                            case "1":
+                                ShowAccount(Damir);
                                 break;
-                            case 2:
-                                int Count;
+                            case "2":
                                 Transfer2(Damir);
                                 break;
-                            case 3:
-                                Count = Whitdraw2(Users, Damir, userAcc, ref Pin);
+                            case "3":
+                                Whitdraw2(Users, Damir, userAcc, ref Pin);
                                 break;
-                            case 4:
+                            case "4":
                                UsersUse = LogOut();
                                 break;
                             default:
@@ -131,23 +130,22 @@ namespace Individuella_projektet
                         Console.WriteLine("2. Överföring mellan konton");
                         Console.WriteLine("3. Ta ut Pengar");
                         Console.WriteLine("4. Logga ut");
-                        int uChoice = int.Parse(Console.ReadLine());
+                        string uChoice = Console.ReadLine();
                         Console.Clear();
 
                         switch (uChoice)
                         {
 
-                        case 1:
-                                ShowAccount(login, Users, Damir, Banan, Äpple, Päron, Apelsin);
+                        case "1":
+                                ShowAccount(Banan);
                             break;
-                        case 2:
-                                int Count;
+                        case "2":
                                 Transfer2(Banan);
                             break;
-                        case 3:
-                            Count = Whitdraw2(Users, Banan, userAcc, ref Pin);
+                        case "3":
+                            Whitdraw2(Users, Banan, userAcc, ref Pin);
                             break;
-                        case 4:
+                        case "4":
                                UsersUse = LogOut();
                                 break;
                         default:
@@ -167,23 +165,22 @@ namespace Individuella_projektet
                         Console.WriteLine("2. Överföring mellan konton");
                         Console.WriteLine("3. Ta ut Pengar");
                         Console.WriteLine("4. Logga ut");
-                        int uChoice = int.Parse(Console.ReadLine());
+                        string uChoice = Console.ReadLine();
                         Console.Clear();
 
                         switch (uChoice)
                         {
 
-                        case 1:
-                                ShowAccount(login, Users, Damir, Banan, Äpple, Päron, Apelsin);
+                        case "1":
+                                ShowAccount(Äpple);
                             break;
-                        case 2:
-                            int Count;
+                        case "2":
                             Transfer2(Äpple);
                             break;
-                        case 3:
-                            Count = Whitdraw2(Users, Äpple, userAcc, ref Pin);
+                        case "3":
+                            Whitdraw2(Users, Äpple, userAcc, ref Pin);
                             break;
-                        case 4:
+                        case "4":
                                 UsersUse = LogOut();
                                 break;
                         default:
@@ -200,26 +197,26 @@ namespace Individuella_projektet
                 Console.WriteLine("välkommen " + login + " Välj mellan följande alternativ:");
                 do
                 {
+                        
                         Console.WriteLine("1. Se dina konton och saldo");
                         Console.WriteLine("2. Överföring mellan konton");
                         Console.WriteLine("3. Ta ut Pengar");
                         Console.WriteLine("4. Logga ut");
-                        int uChoice = int.Parse(Console.ReadLine());
+                        string uChoice = Console.ReadLine();
                         Console.Clear();
 
                         switch (uChoice)
                         {
-                        case 1:
-                                ShowAccount(login, Users, Damir, Banan, Äpple, Päron, Apelsin);
+                        case "1":
+                                ShowAccount(Päron);
                             break;
-                        case 2:
-                            int Count;
+                        case "2":
                             Transfer2(Päron);
                             break;
-                        case 3:
-                            Count = Whitdraw2(Users, Päron, userAcc, ref Pin);
+                        case "3":
+                            Whitdraw2(Users, Päron, userAcc, ref Pin);
                             break;
-                        case 4:
+                        case "4":
 
                                 UsersUse = LogOut();
                                 break;
@@ -243,26 +240,38 @@ namespace Individuella_projektet
                         Console.WriteLine("2. Överföring mellan konton");
                         Console.WriteLine("3. Ta ut Pengar");
                         Console.WriteLine("4. Logga ut");
-                        int uChoice = int.Parse(Console.ReadLine());
+                        string uChoice = Console.ReadLine();
                         Console.Clear();
 
                             switch (uChoice)
                             {
 
-                            case 1:
-                                ShowAccount(login, Users, Damir, Banan, Äpple, Päron, Apelsin);
-                            break;
-                            case 2:
+                            case "1":
+                                Console.WriteLine("1. Personkonto " + Apelsin[0]);
+                                break;
+                            case "2":
 
                             Console.WriteLine("1. Personkonto " + Apelsin[0]);
-                            Console.WriteLine("Du har endast 1 konto, så inga överföringar är tillgängliga");
+                            Console.WriteLine("Vill du sätta in pengar: Ja / Nej");
+                            string ja = Console.ReadLine();
+                            if (ja == "Ja")
+                            {
+                            Console.Write("Hur mycket vill du sätta in: ");
+                            decimal.TryParse(Console.ReadLine(), out decimal ut);
+                            if (ut > 0)
+                            {
+                            Apelsin[0] = Apelsin[0] + ut;
+                            Console.WriteLine("Ditt nya saldo är: " + Apelsin[0]);
+                            }
+                            }
+                            
                             Enter();
                             break;
-                        case 3:
+                        case "3":
 
                             Console.WriteLine("1. Personkonto " + Apelsin[0]);
                             Console.WriteLine("Hur mycket vill du ta ut: Saldo " + Apelsin[0]);
-                            over = decimal.Parse(Console.ReadLine());
+                                decimal.TryParse(Console.ReadLine(), out over);
                             if (over <= Apelsin[0] && over > 0)
                             {
                                 Console.WriteLine("Bekräfta uttaget genom att slå in din Pin:");
@@ -279,7 +288,7 @@ namespace Individuella_projektet
                             else Console.WriteLine("Summan stämmer inte överens med kontots saldo");
                                 Enter();
                             break;
-                            case 4:
+                            case "4":
                                 UsersUse = LogOut();
                                 break;
                             default:
@@ -306,25 +315,25 @@ namespace Individuella_projektet
             return UsersUse = true;
         }
 
-        private static int Whitdraw2(string[,] Users, decimal[] Accounts, int userAcc, ref string Pin)
+        private static void Whitdraw2(string[,] Users, decimal[] Accounts, int userAcc, ref string Pin)
         {
-            int Count;
+            string draw;
             // Depending on the logged in user
             Console.WriteLine("1. Personkonto " + Accounts[0]);
             Console.WriteLine("2. Lönekonto " + Accounts[1]);
             // From which account to whitdraw
             Console.WriteLine("Vilket konto vill du göra uttag från: Alt 1 - 2");
-            Count = int.Parse(Console.ReadLine());
+            draw = Console.ReadLine();
             Console.Clear();
 
-            if (Count == 1)
+            if (draw == "1")
             {
                 Console.WriteLine("Hur mycket vill du ta ut: Saldo " + Accounts[0]);
-                decimal ut = decimal.Parse(Console.ReadLine());
+                decimal.TryParse(Console.ReadLine(), out decimal ut);
                 // If the account has the balance
                 if (ut <= Accounts[0] && ut > 0)
                 {
-                    Console.WriteLine("Bekräfta uttaget genom att slå in din Pin:");
+                    Console.Write("Bekräfta uttaget genom att slå in din Pin:");
                     Pin = Console.ReadLine();
                     // Confirm the whitdraw with Pin
                     if (Pin == Users[userAcc, 1])
@@ -335,21 +344,21 @@ namespace Individuella_projektet
                     }
                     // If wrong Pin back to main menu
                     else Console.WriteLine("Fel Pin du skickas tillbaka till menyn ");
-                    Thread.Sleep(500);
+                    Enter();
                 }
                 // If wrong amount registered back to menu
-                else Console.WriteLine("Summan stämmer inte överens med kontots saldo du skickas tillbaka till menyn ");
-                Thread.Sleep(500);
+                else Console.WriteLine("Summan stämmer inte överens med kontots saldo: " + Accounts[0]);
+                Enter();
             }
-            else if (Count == 2)
+            else if (draw == "2")
             {
                 // Same as before on the second account
                 Console.WriteLine("Hur mycket vill du ta ut: Saldo " + Accounts[1]);
-                decimal ut = decimal.Parse(Console.ReadLine());
+                decimal.TryParse(Console.ReadLine(), out decimal ut);
 
                 if (ut <= Accounts[1] && ut > 0)
                 {
-                    Console.WriteLine("Bekräfta uttaget genom att slå in din Pin:");
+                    Console.Write("Bekräfta uttaget genom att slå in din Pin:");
                     Pin = Console.ReadLine();
                     if (Pin == Users[userAcc, 1])
                     {
@@ -358,18 +367,19 @@ namespace Individuella_projektet
                         Enter();
                     }
                     else Console.WriteLine("Fel Pin:");
-                    Thread.Sleep(500);
+                    Enter();
                 }
-                else Console.WriteLine("Summan stämmer inte överens med kontots saldo:");
-                Thread.Sleep(500);
+                else Console.WriteLine("Summan stämmer inte överens med kontots saldo: " + Accounts[1]);
+                Enter();
             }
-            else if (Count >= 3)
+            else
             {
-                Console.WriteLine("Siffran stämmer inte överens med dina konton");
+                Console.WriteLine("Ogiltigt val");
+                Console.WriteLine("Du skickas tillbaka till huvudmenyn");
                 Thread.Sleep(500);
             }
 
-            return Count;
+            
         }
 
         private static void Transfer2(decimal[] Accounts)
@@ -379,19 +389,20 @@ namespace Individuella_projektet
             Console.WriteLine("2. Lönekonto " + Accounts[1]);
             // Checking which account ge wants to transfer from.
             Console.WriteLine("Vilket konto vill du göra överföring från: Alt 1 - 2");
-            int Count = int.Parse(Console.ReadLine());
+            string Count = Console.ReadLine();
             Console.Clear();
 
-            if (Count == 1)
+            if (Count == "1")
             {
 
                 Console.WriteLine("1. Personkonto " + Accounts[0]);
-                Console.WriteLine("Ange summan du vill föra över:");
-                decimal over = decimal.Parse(Console.ReadLine());
+                Console.Write("Ange summan du vill föra över:");
+                decimal.TryParse(Console.ReadLine(), out decimal over);
                 // If there is that amount that the user wrote in the account.
                 if (over <= Accounts[0] && over >= 0)
                 {
-                    Console.WriteLine("Den nya summan på dina konto är följande:");
+                    Console.Clear();
+                    Console.WriteLine("Du förde över " + over + "kr till ditt lönekonto");
                     Accounts[0] = Accounts[0] - over;
                     Accounts[1] = Accounts[1] + over;
                     Console.WriteLine("1. Personkonto " + Accounts[0]);
@@ -405,20 +416,20 @@ namespace Individuella_projektet
                     Enter();
                 }
             }
-            else if (Count == 2)
+            else if (Count == "2")
             {
                 // Same as before on the second account
                 Console.WriteLine("2. Lönekonto " + Accounts[1]);
-                Console.WriteLine("Ange summan du vill föra över:");
-                decimal over = decimal.Parse(Console.ReadLine());
+                Console.Write("Ange summan du vill föra över:");
+                decimal.TryParse(Console.ReadLine(), out decimal over);
                 if (over <= Accounts[1] && over >= 0)
                 {
-
-                    Console.WriteLine("Den nya summan på dina konto är följande:");
+                    Console.Clear();
+                    Console.WriteLine("Du förde över " + over + "kr till ditt Personkonto");
                     Accounts[0] = Accounts[0] + over;
                     Accounts[1] = Accounts[1] - over;
-                    Console.WriteLine("1. Personkonto " + Accounts[0]);
-                    Console.WriteLine("2. Lönekonto " + Accounts[1]);
+                    Console.WriteLine("1) Personkonto " + Accounts[0]);
+                    Console.WriteLine("2) Lönekonto " + Accounts[1]);
                     Enter();
                 }
                 else if (over > Accounts[1] || over < 0)
@@ -428,50 +439,19 @@ namespace Individuella_projektet
                 }
             }
             // If the user presses any other number than the account numbers.
-            else if (Count >= 3)
+            else
             {
                 Console.WriteLine("Ogiltigt val");
-                Enter();
+                Console.WriteLine("Du skickas tillbaka till huvudmenyn");
+                Thread.Sleep(500);
             }
         }
 
-        public static void ShowAccount(string login, string[,] Users, decimal[] Damir, decimal[] Banan, decimal[] Äpple, decimal[] Päron, decimal[] Apelsin)
+        public static void ShowAccount(decimal[] Accounts)
         {
-
-            // All accounts depending on the logged in user.
-            if (Users[0, 0] == login)
-            {
-                Console.WriteLine("1. Personkonto " + Damir[0]);
-                Console.WriteLine("2. Lönekonto " + Damir[1]);
+                Console.WriteLine("1. Personkonto " + Accounts[0]);
+                Console.WriteLine("2. Lönekonto " + Accounts[1]);
                 Enter();
-            }
-            else if (Users[1, 0] == login)
-            {
-                Console.WriteLine("1. Personkonto " + Banan[0]);
-                Console.WriteLine("2. Lönekonto " + Banan[1]);
-                Enter();
-            }
-            else if (Users[2, 0] == login)
-            {
-                Console.WriteLine("1. Personkonto " + Äpple[0]);
-                Console.WriteLine("2. Lönekonto " + Äpple[1]);
-                Enter();
-
-            }
-            else if (Users[3, 0] == login)
-            {
-                Console.WriteLine("1. Personkonto " + Päron[0]);
-                Console.WriteLine("2. Lönekonto " + Päron[1]);
-                Enter();
-
-            }
-            else if (Users[4, 0] == login)
-            {
-                Console.WriteLine("1. Personkonto " + Apelsin[0]);
-                Enter();
-
-            }
-            
         }
 
         private static void Enter()
@@ -494,7 +474,7 @@ namespace Individuella_projektet
                 {
                     Console.Write("");
                 }
-            } while (false);
+            } while (press == false);
         }
     }
 
